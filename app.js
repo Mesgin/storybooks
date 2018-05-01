@@ -4,6 +4,9 @@ const app = express()
 const port = process.env.PORT || 5000
 const passport = require('passport')
 
+// load User model
+require('./models/User')
+
 // Passport config
 require('./config/passport')(passport)
 
