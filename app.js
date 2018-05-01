@@ -10,6 +10,16 @@ require('./config/passport')(passport)
 // Load Routes
 const auth = require('./routes/auth')
 
+// Load keys
+const keys = require('./config/keys')
+
+// Mongoose promises
+mongoose.Promise = global.Promise
+// Mongoose connect
+mongoose.connect(keys.mongooseURI)
+  .then(()=> console.log('MongoDb connected'))
+  .catch(err => console.log(err))
+
 app.get('/',(req,res)=>{
   res.send('worked')
 })
