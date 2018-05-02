@@ -5,6 +5,7 @@ const port = process.env.PORT || 5000
 const passport = require('passport')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
+const exphbs = require('express-handlebars')
 
 // load User model
 require('./models/User')
@@ -13,6 +14,7 @@ require('./models/User')
 require('./config/passport')(passport)
 
 // Load Routes
+const index = require('./routes/index')
 const auth = require('./routes/auth')
 
 // Load keys
@@ -25,9 +27,11 @@ mongoose.connect(keys.mongoURI)
   .then(()=> console.log('MongoDb connected'))
   .catch(err => console.log(err))
 
-app.get('/',(req,res)=>{
-  res.send('worked')
-})
+// Handlebars middleware
+app.engine('handlebars',exphbs({
+  defaultLayout: 'main'
+}))
+app.set('view engine','handlebars')
 
 
 app.use(cookieParser())
@@ -48,6 +52,7 @@ app.use((req,res,next)=>{
 })
 
 // Use routes
+app.get('/',index)
 app.use('/auth',auth)
 
 
