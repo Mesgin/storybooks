@@ -1,9 +1,18 @@
 const express = require('express')
 const router = express.Router()
 const {ensureAuthenticated} = require('../helpers/auth')
+const mongoose = require('mongoose')
+const Story = mongoose.model('stories')
+const User = mongoose.model('users')
+
+
 // Stories index
 router.get('/',(req,res)=>{
-  res.render('stories/index')
+  Story.find({status:'public'})
+  .populate('users')
+  .then(stories =>{
+    res.render('stories/index',{stories})
+  })
 })
 
 // Add story form
