@@ -25,7 +25,7 @@ const stories = require('./routes/stories')
 const keys = require('./config/keys')
 
 // HBS helper
-const {truncate,stripTags} = require('./helpers/hbs')
+const {truncate,stripTags,formatDate} = require('./helpers/hbs')
 
 // Mongoose promises
 mongoose.Promise = global.Promise

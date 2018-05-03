@@ -5,7 +5,6 @@ const mongoose = require('mongoose')
 const Story = mongoose.model('stories')
 const User = mongoose.model('users')
 
-
 // Stories index
 router.get('/',(req,res)=>{
   Story.find({status:'public'})
@@ -14,6 +13,17 @@ router.get('/',(req,res)=>{
     res.render('stories/index',{
       stories: stories
     })
+  })
+})
+
+// Show single story
+router.get('/show/:id',(req,res)=>{
+  Story.findOne({
+    _id: req.params.id
+  })
+  .populate('users')
+  .then(story =>{
+    res.render('stories/show',{story})
   })
 })
 
