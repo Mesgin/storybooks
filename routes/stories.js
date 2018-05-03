@@ -11,7 +11,9 @@ router.get('/',(req,res)=>{
   Story.find({status:'public'})
   .populate('users')
   .then(stories =>{
-    res.render('stories/index',{stories})
+    res.render('stories/index',{
+      stories: stories
+    })
   })
 })
 
@@ -22,7 +24,7 @@ router.get('/add', ensureAuthenticated , (req,res)=>{
 
 // Process add story
 router.post('/',(req,res)=>{
-  let allowComments
+  let allowComments;
   if(req.body.allowComments){
     allowComments = true
   } else {
