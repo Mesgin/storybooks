@@ -6,7 +6,7 @@ router.get('/', ensureGuest , (req,res)=>{
   res.render('index/welcome')
 })
 
-router.get('/dashboard', ensureAthenticated , (req,res)=>{
+router.get('/dashboard' , (req,res)=>{
   res.render('index/dashboard')
 })
 
