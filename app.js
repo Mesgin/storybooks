@@ -7,9 +7,11 @@ const passport = require('passport')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
 
-// load User model
+// load models
 require('./models/User')
+require('./models/Story')
 
 // Passport config
 require('./config/passport')(passport)
@@ -35,6 +37,7 @@ app.engine('handlebars',exphbs({
 }))
 app.set('view engine','handlebars')
 
+app.use(bodyParser.json())
 
 app.use(cookieParser())
 app.use(session({
