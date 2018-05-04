@@ -32,9 +32,7 @@ const {
 // Map global promises
 mongoose.Promise = global.Promise
 // Mongoose Connect
-mongoose.connect(keys.mongoURI, {
-  useMongoClient:true
-})
+mongoose.connect(keys.mongoURI)
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err))
 
