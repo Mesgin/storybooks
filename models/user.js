@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-
 // Create Shema
 const UserSchema = new Schema({
   googleID:{
